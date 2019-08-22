@@ -398,7 +398,6 @@
             }
             var oldUnit = g.querySelector('text[x="' + addUnits(pos) + '"]');
             if (oldUnit) {
-              console.log("REMOVED", oldUnit);
               oldUnit.remove();
             }
             textSvg.origPos = pos;
