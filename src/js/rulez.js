@@ -14,13 +14,13 @@
         // This accentuates the need for the creation of a real `window`.
         // e.g. var Rulez = require('rulez.js')(window);
         module.exports = global.document ?
-            factory(global, true) :
-            function (w) {
-                if (!w.document) {
-                    throw new Error('rulez.js requires a window with a document');
-                }
-                return factory(w);
-            };
+          factory(global, true) :
+          function (w) {
+              if (!w.document) {
+                  throw new Error('rulez.js requires a window with a document');
+              }
+              return factory(w);
+          };
     } else {
         factory(global);
     }
@@ -129,7 +129,7 @@
             c.element.appendChild(g = createGroup());
             size = isVertical() ? c.height : c.width;
             unitConversionRate = getUnitConversionRate();
-            calculateStartEndPosition();
+            calculateStartEndPosition(c);
             generateDivisionsAndTexts(startPosition, endPosition);
             this.scrollTo(0, false);
         };
@@ -272,7 +272,7 @@
             return clone;
         }
 
-        function calculateStartEndPosition() {
+        function calculateStartEndPosition(config) {
             if (!maxDistance) {
                 c.divisions.forEach(function (entry) {
                     if (entry.pixelGap > maxDistance) {
@@ -280,8 +280,17 @@
                     }
                 });
             }
-            endPosition = size - (size % maxDistance) + maxDistance * additionalDivisionsAmount;
-            startPosition = -maxDistance * additionalDivisionsAmount;
+            if (config && config.endPosition!=null) {
+                endPosition = config.endPosition;
+            } else {
+                endPosition = size - (size % maxDistance) + maxDistance * additionalDivisionsAmount;
+            }
+
+            if (config && config.startPosition!=null) {
+                startPosition = config.startPosition;
+            } else {
+                startPosition = -maxDistance * additionalDivisionsAmount;
+            }
         }
 
         function generateDivisionsAndTexts(startPosition, endPosition) {
@@ -398,7 +407,7 @@
             }
             var oldUnit = g.querySelector('text[x="' + addUnits(pos) + '"]');
             if (oldUnit) {
-              oldUnit.remove();
+                oldUnit.remove();
             }
             textSvg.origPos = pos;
             textSvg.origPosAttribute = x;
