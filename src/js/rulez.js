@@ -374,6 +374,8 @@
                 height = 'height';
                 width = 'width';
             }
+            var oldUnit = g.querySelector('rect[x="' + addUnits(pos) + '"]');
+            if(oldUnit) oldUnit.remove();
             line.setAttribute('class', elementConfig.className);
             line.setAttribute(x, addUnits(pos));
             line.setAttribute(y, addUnits(defaultAlignment ? '0' : getAlignmentOffset() - elementConfig.lineLength));
@@ -393,6 +395,11 @@
             } else {
                 x = 'x';
                 y = 'y';
+            }
+            var oldUnit = g.querySelector('text[x="' + addUnits(pos) + '"]');
+            if (oldUnit) {
+              console.log("REMOVED", oldUnit);
+              oldUnit.remove();
             }
             textSvg.origPos = pos;
             textSvg.origPosAttribute = x;
@@ -501,4 +508,4 @@
     return Rulez;
 }));
 
-    
+

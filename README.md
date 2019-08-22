@@ -1,20 +1,14 @@
 #Rulez.js
-
+Tihs is fork of rulez.js
 Rulez.js is a javascript library for showing svg based customizable rulers. It generates divisions and texts once and
  only for visible area.
 
+__The only difference: duplicating gaps are not stacked, the higher the element, the higher the priority__
+
 ##Instalation
 
-Download the [minified library](https://raw.githubusercontent.com/ShyykoSerhiy/rulez.js/master/dist/js/rulez.min.js) or 
-use bower to install it.
 ````sh
-bower install rulez.js
-````
-
-and include it in your html.
-
-````html
-<script type="text/javascript" src="bower_components/rulez.js/dist/js/rulez.min.js"></script>
+npm install rulez-fork
 ````
 
 ##Usage
