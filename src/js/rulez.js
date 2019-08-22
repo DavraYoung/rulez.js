@@ -159,7 +159,7 @@
                 var startTextPos = pixelCurrentPosition - offset;
                 for (var j = 0; j < textElements.length; j++) {
                     var textElement = textElements[j];
-                    var text = Math.floor((startTextPos + (j - additionalDivisionsAmount * amountPerMaxDistance) * textConfig.pixelGap) * scale);
+                    var text = (startTextPos + (j - additionalDivisionsAmount * amountPerMaxDistance) * textConfig.pixelGap) * scale;
                     if (textConfig.showUnits) {
                         text = addUnits(text);
                     }
